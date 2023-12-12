@@ -1,3 +1,5 @@
+<!-- GitHub Pages HTML Code -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,7 +31,7 @@
     // Function to fetch the open count from GitHub repository
     async function fetchOpenCount() {
       try {
-        const response = await fetch('https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPOSITORY/main/openCount.txt');
+        const response = await fetch('https://raw.githubusercontent.com/dhruv2424/Chat-gpt-solution-/main/openCount.txt');
         const data = await response.text();
         return parseInt(data) || 5;
       } catch (error) {
@@ -54,6 +56,7 @@
         // Update the open count in the GitHub repository
         const newCount = currentCount - 1;
         updateCounter(newCount);
+        // No personal access token required for updating (writing) the repository
         updateGitHubCount(newCount);
       } else {
         alert("No more opens allowed.");
@@ -67,11 +70,8 @@
       formData.append('file', blob, 'openCount.txt');
 
       try {
-        await fetch('https://api.github.com/repos/YOUR_USERNAME/YOUR_REPOSITORY/contents/openCount.txt', {
+        await fetch('https://api.github.com/repos/dhruv2424/Chat-gpt-solution-/contents/openCount.txt', {
           method: 'PUT',
-          headers: {
-            Authorization: 'Bearer YOUR_PERSONAL_ACCESS_TOKEN',
-          },
           body: formData,
         });
 
